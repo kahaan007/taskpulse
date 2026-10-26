@@ -18,9 +18,9 @@ function safeEq(a: string, b: string) {
 }
 
 export function checkPasscode(input: string): boolean {
-  const pass = process.env.APP_PASSCODE;
+  const pass = process.env.APP_PASSCODE?.trim();
   if (!pass) return process.env.NODE_ENV !== "production";
-  return safeEq(input, pass);
+  return safeEq(input.trim(), pass);
 }
 
 export function makeSession(): { value: string; maxAge: number } {
